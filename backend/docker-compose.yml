@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  web:
+    container_name: manga_walker_backend
+    build:
+      context: .
+      dockerfile: Dockerfile_backend
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+        #entrypoint:
+        #- dockerize
+        #- -timeout
+        #- 60s
+        #- -wait
+        #- tcp://mysql:3306
+    command: [
+        "./wait-for-db.sh",
+        "db:3306",
+        "python manage.py runserver 0.0.0.0:8000",
+      ] # DBの立ち上がりを待つ
+    depends_on:
+      - db
+  db:
+    container_name: manga_walker_db
+    image: mysql:8.0
+    ports:
+      - 3306:3306
+    volumes:
+      - mysqldata:/var/lib/mysql
+      - ./mysql-confd:/etc/mysql/conf.d
+    environment:
+      MYSQL_DATABASE: mangaWalker
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_PASSWORD: password
+      MYSQL_USER: user
+      TZ: 'Asia/Tokyo'
+volumes:
+  mysqldata:
+
