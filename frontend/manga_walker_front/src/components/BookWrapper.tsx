@@ -56,20 +56,18 @@ const handleDelete = (id: any) => {
 const BookWrapper = (data: any) => {
   const classes = useStyles();
   return (
-    <>
-      <CardWrapper>
-        <Card className={classes.cardContent}>
-          <h2 className={classes.cardTitle}>{data.data.title}</h2>
-          <p className={classes.cardUrlWrapper}><a target="_blank" rel="noreferrer" href={data.data.url} className={classes.cardUrl}>{data.data.url}</a></p>
-          <CardBottom>
-            <p className={classes.cardDate}>追加日:{data.data.stored_at}</p>
-            <IconButton onClick={() => handleDelete(data.data.id)}>
-              <DeleteIcon style={{ fontSize: '27px'}} />
-            </IconButton>
-          </CardBottom>
-        </Card>
-      </CardWrapper>
-    </>
+    <CardWrapper>
+      <Card className={classes.cardContent}>
+        <h2 className={classes.cardTitle}>{data.data.title}</h2>
+        <p className={classes.cardUrlWrapper}><a target="_blank" rel="noreferrer" href={data.data.url} className={classes.cardUrl}>{data.data.url}</a></p>
+        <CardBottom>
+          <p className={classes.cardDate}>追加日:{data.data.stored_at}</p>
+          <IconButton onClick={() => handleDelete(data.data.id)}>
+            <DeleteIcon style={{ fontSize: '27px'}} />
+          </IconButton>
+        </CardBottom>
+      </Card>
+    </CardWrapper>
   )
 }
 

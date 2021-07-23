@@ -19,7 +19,7 @@ class BookComponent(models.Model):
 class StoreBook(models.Model):
 
     title = models.CharField(max_length=100)
-    category = models.ForeignKey(BookComponent, on_delete=models.PROTECT)
+    category = models.ForeignKey(BookComponent, on_delete=models.SET_NULL, null=True)
     url = models.URLField(max_length=200)
     stored_at = models.DateTimeField(auto_now_add=True)
 

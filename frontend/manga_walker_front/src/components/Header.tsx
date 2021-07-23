@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { alpha, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -10,6 +10,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import styled from '@emotion/styled';
+import { FcGoogle } from 'react-icons/fc';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
     search: {
       position: 'relative',
       borderRadius: theme.shape.borderRadius,
-      backgroundColor: alpha(theme.palette.common.white, 0.15),
+      backgroundColor: '#fff',
       '&:hover': {
         backgroundColor: alpha(theme.palette.common.white, 0.25),
       },
@@ -42,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     searchIcon: {
-      padding: theme.spacing(0, 2),
+      // padding: theme.spacing(0, 2),
       height: '100%',
       position: 'absolute',
       pointerEvents: 'none',
@@ -63,12 +65,52 @@ const useStyles = makeStyles((theme: Theme) =>
         width: '20ch',
       },
     },
+    input: {
+      width: 'auto',
+      marginLeft: '8%',
+    },
+    iconButton: {
+      padding: 10,
+    },
   }),
 );
 
+const SearchBox = styled.form`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  box-shadow: inset 5px 5px 5px #ccc;
+  -moz-box-shadow: inset 5px 5px 5px #ccc;
+  -webkit-box-shadow: inset 5px 5px 5px #ccc;
+  -o-box-shadow: inset 5px 5px 5px #ccc;
+  position: relative;
+  border-radius: 15px;
+  margin-right: 20px;
+  padding-right: 10px;
+  '&:hover': {
+    background-color: #fff,
+  };
+  @media (min-width: 1400px) {
+    width: 400px;
+    text-align: center;
+  }
+  @media (max-width: 540px) {
+    width: 100%;
+    text-align: center;
+  }
+`;
+
+const GoogleLogo = styled.div`
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
+`
+
 export default function Header() {
   const classes = useStyles();
-  const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
+  const [searchValue, setSearchValue] = useState("")
 
   const isMenuOpen = Boolean(menuAnchorEl);
 
@@ -81,6 +123,28 @@ export default function Header() {
   };
 
   const menuId = 'primary-search-account-menu';
+
+  const handleSubmit = (e:any) => {
+    const newArraySearchValue = searchValue.split(" ")
+    const checkEmpty = newArraySearchValue.filter(d => d !== "")
+    const newSearchValue = checkEmpty.join("+")
+    const url = `https://www.google.com/search?sitesearch=mangabank.org&q=${newSearchValue}`
+    window.open(url, '_blank')
+    return e.preventDefault()
+  }
+
+  const handleSearchPropsChange = (event: any) => {
+    setSearchValue(event.target.value)
+  }
+
+  const handleClickSearch = () => {
+    // const newSearchValue = searchValue.replace(" ", "+")
+    const newArraySearchValue = searchValue.split(" ")
+    const checkEmpty = newArraySearchValue.filter(d => d !== "")
+    const newSearchValue = checkEmpty.join("+")
+    const url = `https://www.google.com/search?sitesearch=mangabank.org&q=${newSearchValue}`
+    window.open(url, '_blank')
+  }
 
   const menu = (
     <Menu
@@ -103,12 +167,12 @@ export default function Header() {
           保存した作品一覧
         </MenuItem>
       </Link>
-      <Link to="/AddBookComponent" style={{textDecoration: 'none', color: '#000'}}>
+      <Link to="/add/books" style={{textDecoration: 'none', color: '#000'}}>
         <MenuItem onClick={handleMenuClose}>
           本を追加
         </MenuItem>
       </Link>
-      <Link to="/StoreBook" style={{textDecoration: 'none', color: '#000'}}>
+      <Link to="/add/items" style={{textDecoration: 'none', color: '#000'}}>
         <MenuItem onClick={handleMenuClose}>
           URLを追加
         </MenuItem>
@@ -139,7 +203,7 @@ export default function Header() {
           </Link>
           <div className={classes.grow} />
 
-          <div className={classes.search}>
+          {/* <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
@@ -151,7 +215,25 @@ export default function Header() {
               }}
               inputProps={{ 'aria-label': 'search' }}
             />
-          </div>
+          </div> */}
+          <SearchBox onSubmit={(e) => handleSubmit(e)}>
+            <GoogleLogo>
+              <FcGoogle />
+            </GoogleLogo>
+            <InputBase
+              className={classes.input}
+              placeholder="Googleで検索する"
+              inputProps={{ 'aria-label': 'search google' }}
+              onChange={(event) => handleSearchPropsChange(event)}
+            />
+            <IconButton
+              className={classes.iconButton}
+              aria-label="search"
+              onClick={() => handleClickSearch()}
+            >
+              <SearchIcon />
+            </IconButton>
+          </SearchBox>
         </Toolbar>
       </AppBar>
       {menu}

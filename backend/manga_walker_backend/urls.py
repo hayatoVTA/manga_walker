@@ -4,8 +4,8 @@ from rest_framework.routers import DefaultRouter
 
 
 router = DefaultRouter()
-router.register('StoreBook', views.StoreBookViewSet)
-router.register('BookComponent', views.BookComponentViewSet)
+router.register('items', views.StoreBookViewSet)
+router.register('books', views.BookComponentViewSet)
 # router.register('ListBook', views.ListBook)
 
 urlpatterns = [

@@ -3,6 +3,7 @@ import Header from './Header'
 import NowLoading from './NowLoading';
 import { getFilteringBooks } from '../api/getBooks';
 import BookWrapper from './BookWrapper';
+import '../styles/global.module.css';
 
 const Book = ({match}:any) => {
 
@@ -23,23 +24,23 @@ const Book = ({match}:any) => {
   return (
     <>
       <Header />
+      <br />
+      <div style={{display: 'flex', flexWrap: 'wrap', marginLeft: '10px', marginRight: '10px'}}>
       {
+        
         loading
         ?
-        <div style={{display: 'flex', flexWrap: 'wrap', marginLeft: '10px', marginRight: '10px'}}>
           <NowLoading />
-        </div>
         : 
         <>
           {
             data.map(d => (
-              <div key={d["id"]}>
-                <BookWrapper data={d} />
-              </div>
+              <BookWrapper data={d} />
             ))
           }
         </>
       }
+      </div>
     </>
   )
 }

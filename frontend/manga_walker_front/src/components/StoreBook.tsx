@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { storeUrlData } from "../api/postBooks";
 import Header from './Header'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import styled from '@emotion/styled';
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -17,6 +16,8 @@ import {
 import NowLoading from './NowLoading';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import InputTitle from './InputTitle';
+import InputUrl from './InputUrl';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -99,21 +100,8 @@ const StoreBook = () => {
     }
 
     await storeUrlData(data)
+    setData({title:"",category:"",url:""})
   }
-
-  const handleFormChange = (event:any) => {
-    switch (event.target.name) {
-      case "title":
-        setData({title:event.target.value,category:data.category,url:data.url})
-        break;
-      case "url":
-        setData({title:data.title,category:data.category,url:event.target.value})
-        break;
-      default:
-        console.log(event.target.name)
-    }
-  }
-
 
   return (
     <>
@@ -135,34 +123,13 @@ const StoreBook = () => {
                   {/* <form onSubmit={handleSubmit(onSubmit)}> */}
                   <form onSubmit={handleSubmit}>
                     <div style={{margin: '20px'}}>
-                      <TextField
-                        id="outlined-basic"
-                        variant="outlined"
-                        label="タイトル"
-                        size="small"
-                        required
-                        type="text"
-                        name="title"
-                        // {...register("title", { required: true })}
-                        style={{width: '100%'}}
-                        onChange={handleFormChange}
-                      />
+                      <InputTitle />
                     </div>
                     <div style={{margin: '20px'}}>
                       <ChoiceCategories categories={allData} />
                     </div>
                     <div style={{margin: '20px'}}>
-                      <TextField
-                        id="outlined-basic"
-                        variant="outlined"
-                        label="URL"
-                        size="small"
-                        required
-                        type="text"
-                        name="url"
-                        style={{width: '100%'}}
-                        onChange={handleFormChange}
-                      />
+                      <InputUrl />
                     </div>
                     <div style={{margin: '20px'}}>
                     <AddButton>追加する</AddButton>

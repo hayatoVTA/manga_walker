@@ -9,7 +9,7 @@ const toJson = async (res:any) => {
 
 // 本の一覧取得
 export const getAllStoreBooks = async () => {
-  const res = await fetch('http://127.0.0.1:8000/manga_walker/StoreBook/', {
+  const res = await fetch('http://127.0.0.1:8000/api/items/', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -20,7 +20,7 @@ export const getAllStoreBooks = async () => {
 
 // 本のComponent一覧取得
 export const getBookComponents = async () => {
-  const res = await fetch('http://127.0.0.1:8000/manga_walker/BookComponent/', {
+  const res = await fetch('http://127.0.0.1:8000/api/books/', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ export const getBookComponents = async () => {
 
 // 絞り込みで一覧取得
 export const getFilteringBooks = async (categoryId:any) => {
-  const res = await fetch(`http://127.0.0.1:8000/manga_walker/listbook/?category=${categoryId}`, {
+  const res = await fetch(`http://127.0.0.1:8000/api/listbook/?category=${categoryId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

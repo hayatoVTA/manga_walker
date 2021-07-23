@@ -23,6 +23,7 @@ const ChoiceCategories = ({ categories }: any) => {
         id="outlined-basic"
         select
         label="カテゴリを選ぶ"
+        value={data.category}
         onChange={handleChange}
         style={{width: '100%'}}
       >

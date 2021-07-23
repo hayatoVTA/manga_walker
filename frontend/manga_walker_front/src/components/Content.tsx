@@ -64,7 +64,7 @@ const Content = (data: CONTENT_PROPS) => {
         <CardBottom>
           <p className={classes.cardDate}>追加日:{data.stored_at}</p>
           <IconButton onClick={() => handleDelete(data.id)}>
-            <DeleteIcon />
+            <DeleteIcon style={{ fontSize: '27px'}} />
           </IconButton>
         </CardBottom>
       </Card>

@@ -31,7 +31,7 @@ const BookComponent = () => {
   return (
     <>
       <Header />
-      <div style={{display: 'flex', flexFlow: 'wrap'}}>
+      <div style={{　display: 'flex', flexFlow: 'wrap', marginLeft: '10px', marginRight: '10px'}}>
       {
         loading ?
         <NowLoading />

@@ -22,12 +22,12 @@ function App() {
               ({match}) => <Book match={match} />
             }
           />
-          <Route path="/storebook">
+          <Route path="/add/items">
             <RecoilRoot>
               <StoreBook />
             </RecoilRoot>
           </Route>
-          <Route path="/AddBookComponent">
+          <Route path="/add/books">
             <AddBookCoverComponent />
           </Route>
           <Route path="/all">

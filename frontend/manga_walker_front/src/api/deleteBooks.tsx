@@ -1,5 +1,5 @@
 export const deleteBookCategory = async (categoryId:any) => {
-  await fetch(`http://127.0.0.1:8000/manga_walker/BookComponent/${categoryId}`, {
+  await fetch(`http://127.0.0.1:8000/api/books/${categoryId}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -8,7 +8,7 @@ export const deleteBookCategory = async (categoryId:any) => {
 }
 
 export const deleteBook = async (bookId:any) => {
-  await fetch(`http://127.0.0.1:8000/manga_walker/StoreBook/${bookId}`, {
+  await fetch(`http://127.0.0.1:8000/api/items/${bookId}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
