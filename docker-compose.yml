@@ -22,7 +22,7 @@ services:
     container_name: nginx_back
     build:
       context: ./backend/nginx/.
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     volumes:
       - static_volume:/code/staticfiles # <-- bind the static volume
     ports:
@@ -63,7 +63,7 @@ services:
     container_name: nginx_frontend
     build:
       context: ./frontend/.
-      dockerfile: ./nginx/Dockerfile.dev
+      dockerfile: ./nginx/Dockerfile
     ports:
       - "80:80"
     # depends_on:
