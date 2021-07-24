@@ -22,7 +22,7 @@ services:
     container_name: nginx_back
     build:
       context: ./backend/nginx/.
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     volumes:
       - static_volume:/code/staticfiles # <-- bind the static volume
     ports:
@@ -49,25 +49,25 @@ services:
     networks:
       - backend_network
 
-  web-front:
-    image: node:14.13.1
-    volumes:
-      - ./frontend/web-front:/home/app/frontend
-    ports:
-      - 3000:3000
-    working_dir: /home/app/frontend
-    command: [bash, -c, npm i && npm start]
-    networks:
-      - frontend_network
+  # web-front:
+  #   image: node:14.13.1
+  #   volumes:
+  #     - ./frontend/web-front:/home/app/frontend
+  #   # ports:
+  #   #   - 3000:3000
+  #   working_dir: /home/app/frontend
+  #   # command: [bash, -c, npm i]
+  #   networks:
+  #     - frontend_network
   frontend-server:
     container_name: nginx_frontend
     build:
-      context: ./frontend/nginx/.
-      dockerfile: Dockerfile
+      context: ./frontend/.
+      dockerfile: ./nginx/Dockerfile.dev
     ports:
       - "80:80"
-    depends_on:
-      - web-front
+    # depends_on:
+    #   - web-front
     networks:
       - frontend_network
 networks:

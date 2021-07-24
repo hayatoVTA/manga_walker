@@ -19,21 +19,22 @@ function App() {
           <Route
             path="/book/:pageId"
             render={
-              ({match}) => <Book match={match} />
+              ({match}) => <Book match={match}/>
             }
+            exact
           />
-          <Route path="/add/items">
+          <Route path="/add/items" exact>
             <RecoilRoot>
               <StoreBook />
             </RecoilRoot>
           </Route>
-          <Route path="/add/books">
+          <Route path="/add/books" exact>
             <AddBookCoverComponent />
           </Route>
-          <Route path="/all">
+          <Route path="/all" exact>
             <AllContent />
           </Route>
-          <Route path="/">
+          <Route path="/" exact>
             <BookComponent />
           </Route>
         </Switch>
