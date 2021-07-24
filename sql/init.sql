@@ -1,2 +1,2 @@
-GRANT ALL PRIVILEGES ON test_mangaWalker.* TO 'user' @'%';
+GRANT ALL PRIVILEGES ON mangaWalker.* TO 'user' @'%';
 FLUSH PRIVILEGES;
