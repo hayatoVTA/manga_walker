@@ -1,3 +1,7 @@
+FROM node:14.13.1
+
+CMD ["npm", "run", "build"]
+
 FROM nginx:1.17.4-alpine
 
 RUN apk add --no-cache bash

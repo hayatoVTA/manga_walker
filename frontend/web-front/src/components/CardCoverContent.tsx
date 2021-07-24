@@ -55,7 +55,7 @@ const handleDelete = (id: any) => {
 }
 
 const fixCoverImgUrl = (url:string) => {
-  const newData = url.replace('127.0.0.1', '127.0.0.1:8080')
+  const newData = url.replace('160.251.82.69', '160.251.82.69:8080')
   return newData
 }
 

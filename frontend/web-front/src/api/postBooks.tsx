@@ -4,7 +4,7 @@ import axios from 'axios';
 export const createBookComponent = async (formData: any) => {
 
   axios({
-    url: "http://127.0.0.1:8080/api/books/",
+    url: "http://160.251.82.69:8080/api/books/",
     method: "post",
     data: formData,
     headers: {
@@ -20,7 +20,7 @@ export const createBookComponent = async (formData: any) => {
 
 export const storeUrlData = async (data: CONTENT_ATOM_PROPS) => {
   axios({
-    url: "http://127.0.0.1:8080/api/items/",
+    url: "http://160.251.82.69:8080/api/items/",
     method: "post",
     data: data,
     headers: {
